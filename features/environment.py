@@ -15,9 +15,9 @@ def browser_init(context, scenario_name):
     """
 
     # ### GOOGLE CHROME ####
-    # driver_path = ChromeDriverManager().install()
-    # options = webdriver.ChromeOptions()
-    # options.add_argument('headless')
+    driver_path = ChromeDriverManager().install()
+    options = webdriver.ChromeOptions()
+    options.add_argument('headless')
     #
     # ### FIREFOX ####
     # # driver_path = GeckoDriverManager().install()
@@ -25,28 +25,28 @@ def browser_init(context, scenario_name):
     # # context.driver = webdriver.Firefox(service=service)
     #
     # ### HEADLESS MODE ####
-    # service = Service(ChromeDriverManager().install())
-    # context.driver = webdriver.Chrome(
-    #     options=options,
-    #     service=service
-    # )
-    # # service = Service(driver_path)
-    # # context.driver = webdriver.Chrome(service=service)
+    service = Service(ChromeDriverManager().install())
+    context.driver = webdriver.Chrome(
+        options=options,
+        service=service
+    )
+    service = Service(driver_path)
+    context.driver = webdriver.Chrome(service=service)
 
     ### BROWSERSTACK ###
-    bs_user = 'joshparada_PxuOyC'
-    bs_key = 'ysxNqGizy9iuEt6789Ap'
-    url = f'http://{bs_user}:{bs_key}@hub-cloud.browserstack.com/wd/hub'
-
-    options = Options()
-    bstack_options = {
-        "os": "Windows",
-        "osVersion": "11",
-        'browserName': 'edge',
-        'sessionName': scenario_name,
-    }
-    options.set_capability('bstack:options', bstack_options)
-    context.driver = webdriver.Remote(command_executor=url, options=options)
+    # bs_user = 'joshparada_PxuOyC'
+    # bs_key = 'ysxNqGizy9iuEt6789Ap'
+    # url = f'http://{bs_user}:{bs_key}@hub-cloud.browserstack.com/wd/hub'
+    #
+    # options = Options()
+    # bstack_options = {
+    #     "os": "Windows",
+    #     "osVersion": "11",
+    #     'browserName': 'edge',
+    #     'sessionName': scenario_name,
+    # }
+    # options.set_capability('bstack:options', bstack_options)
+    # context.driver = webdriver.Remote(command_executor=url, options=options)
 
 
     context.driver.maximize_window()
