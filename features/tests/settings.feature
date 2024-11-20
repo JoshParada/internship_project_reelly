@@ -9,6 +9,15 @@ Feature: Test Scenarios for Settings Page
     And Verify there are 12 options for the settings
     And Verify "connect the company" button is available
 
+  Scenario: User can see all buttons on Settings Page on mobile
+    Given Open Reelly Page
+    And Log In
+    When Go to Main menu on mobile
+    And Go to Settings on mobile
+    Then Verify the right page opens
+    And Verify there are 12 options for the settings
+    And Verify "connect the company" button is available on mobile
+
 
 #  1- Open the main page https://soft.reelly.io
 #2- Log in to the page.

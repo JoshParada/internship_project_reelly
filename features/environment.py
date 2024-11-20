@@ -15,23 +15,34 @@ def browser_init(context, scenario_name):
     """
 
     # ### GOOGLE CHROME ####
-    driver_path = ChromeDriverManager().install()
-    options = webdriver.ChromeOptions()
-    options.add_argument('headless')
+    # driver_path = ChromeDriverManager().install()
+    # options = webdriver.ChromeOptions()
+    # options.add_argument('headless')
     #
+    # service = Service(driver_path)
+    # context.driver = webdriver.Chrome(service=service)
+
     # ### FIREFOX ####
     # # driver_path = GeckoDriverManager().install()
     # # service = Service(driver_path)
     # # context.driver = webdriver.Firefox(service=service)
-    #
+
     # ### HEADLESS MODE ####
-    service = Service(ChromeDriverManager().install())
-    context.driver = webdriver.Chrome(
-        options=options,
-        service=service
-    )
-    service = Service(driver_path)
-    context.driver = webdriver.Chrome(service=service)
+    # service = Service(ChromeDriverManager().install())
+    # context.driver = webdriver.Chrome(
+    #     options=options,
+    #     service=service
+    # )
+
+    # ### MOBILE EMULATION ####
+    # java -jar "C:\Users\parad\Downloads/selenium-server-4.26.0.jar" standalone
+
+    mobile_emulation = {"deviceName": "Samsung Galaxy S20 Ultra"}
+    chrome_options = webdriver.ChromeOptions()
+    chrome_options.add_experimental_option("mobileEmulation", mobile_emulation)
+    chrome_options.to_capabilities()
+    context.driver = webdriver.Remote(command_executor='http://127.0.0.1:4444/wd/hub', options=chrome_options)
+
 
     ### BROWSERSTACK ###
     # bs_user = 'joshparada_PxuOyC'
@@ -49,7 +60,7 @@ def browser_init(context, scenario_name):
     # context.driver = webdriver.Remote(command_executor=url, options=options)
 
 
-    context.driver.maximize_window()
+    # context.driver.maximize_window()
     context.driver.implicitly_wait(4)
     context.driver.wait = WebDriverWait(context.driver, timeout=10)
     context.app = Application(context.driver)

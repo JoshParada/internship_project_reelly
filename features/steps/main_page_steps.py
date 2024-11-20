@@ -7,3 +7,11 @@ def target_page(context):
 @when('Go to Settings')
 def go_to_settings(context):
     context.app.main_page.go_to_settings()
+
+@when('Go to Settings on mobile')
+def go_to_settings_mobile(context):
+    context.app.main_page.go_to_settings_mobile()
+
+@when('Go to Main menu on mobile')
+def go_to_main_menu_mobile(context):
+    context.app.main_page.go_to_main_menu_mobile()

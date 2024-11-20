@@ -11,3 +11,7 @@ def verify_cells(context, n):
 @then('Verify "connect the company" button is available')
 def verify_settings(context):
     context.app.settings_page.verify_connect_the_company()
+
+@then('Verify "connect the company" button is available on mobile')
+def verify_connect_the_company_mobile(context):
+    context.app.settings_page.verify_connect_the_company_mobile()

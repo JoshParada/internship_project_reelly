@@ -7,6 +7,7 @@ class SettingsPage(Page):
 
     SETTINGS_OPTIONS = (By.XPATH, "//*[@class='page-setting-block w-inline-block']")
     CTC_BTN = (By.XPATH, "//a[@href='/payment/personal']")
+    CTC_BTN_MOBILE = (By.XPATH, "//div[@wized='clientModeButton']")
 
     def verify_settings_url(self):
         self.verify_url("https://soft.reelly.io/settings")
@@ -17,3 +18,6 @@ class SettingsPage(Page):
 
     def verify_connect_the_company(self):
         self.wait_to_be_clickable(*self.CTC_BTN)
+
+    def verify_connect_the_company_mobile(self):
+        self.wait_to_be_clickable(*self.CTC_BTN_MOBILE)
